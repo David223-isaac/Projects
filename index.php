@@ -1,235 +1,115 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Usuarios</title>
-	</head>
+<head>
+    <title>Usuario</title>
+    <script src="https://kit.fontawesome.com/34aaf69648.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/34aaf69648.js" crossorigin="anonymous"></script>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+            <header>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Formulario</h1>
+                    <a href="index.php" class="btn btn-primary"><i class="fas fa-home"></i></a>
+                </div>
+            </header>
+		   <?php 
+            if(isset($_POST["boton"])){
+                require_once "sen.php";
+                $obj = new usua();
+                $obj->insertar();
+                header("Location:index.php?a=s");
+            }
+            if(isset($_GET["a"])){
+                echo "<marquee BEHAVIOR=slide SCROLLAMOUNT=15 align: middle>Datos Ingresados</marquee>";
+            }
+            if(isset($_GET["idE"])){
+                require_once "sen.php";
+                $obj = new usua();
+                $obj->eliminar();
+                echo "<marquee BEHAVIOR=slide SCROLLAMOUNT=15 align: middle>Datos Eliminados</marquee>";
+            }
+         ?>
+	   <div class="container-fluid">
+        <div class="row">
 
-	<style type="text/css">
-	*{
-			border: 0;
-			margin: 0;
-			box-sizing: border-box;
-			
-	}
-	table{
-
-		text-align: center;
-		padding: 0.5rem;
-		margin: 0.5rem;
-		height: 90%;
-		width: 90%;
-		align-items: center;
-	}
-	/*table tr:nth-child(odd){
-		background-color: yellow;
-	}
-	table tr:nth-child(even){
-		background-color: cyan;
-	}*/
-	#reg{
-		margin-left: auto;
-		margin-right: auto;
-		height: 50%;
-		width: 50%;
-		text-align: center;
-		border-color: solid red 2px;
-		background-color:  #FCBF1E; 
-		border-radius: 15px; 
-		border:  solid black 2px;
-
-	}
-	.base{
-		text-align: center;
-		align-items: center;
-		
-	}
-	.forma1{
-		margin-left: auto;
-		margin-right: auto;
-		height: 50%;
-		width: 50%;
-		height: 100%;
-		width: 100%;
-
-	}
-	section{
-		text-align: center;
-		display: inline;
-	}
-	#eliminar{
-		margin-left: auto;
-		margin-right: auto;
-		height: 50%;
-		width: 50%;
-		background-color: #0BA01B;
-		text-align: center;
-		border-radius: 15px;
-		border:  solid black 2px;
-	}
-	.modificaru{
-		margin-left: auto;
-		margin-right: auto;
-		background-color: #5AD57F;
-		text-align: center;
-		border-radius: 15px;
-		height: 50%;
-		width: 50%;
-		border:  solid black 2px;
-
-	}
-	header{
-		height: 80px;
-		background-color: #264B41;
-	}
-	input{
-		border-radius: 8px;
-		background-color: black;
-		color:  white;
-		border: solid 4px white;
-	}
-	input:hover {
-		background-color: darkred;
-		transition-duration: 2s;
-		height: 30px;
-	}
-	h1{
-		color: #FFF808;
-		text-align: center;
-	}
-	table {
-		text-align: center;
-		margin-left: auto;
-		margin-right: auto;
-	width: 100%;
-	border: 1px solid #000;
-	}
-	th, td {
-	background-color: #D4AF37;
-	width: 25%;
-	text-align: center;
-	vertical-align: top;
-	border: 1px solid #000;
-	border-collapse: collapse;
-	padding: 0.3em;
-	caption-side: bottom;
-	}
-	caption {
-	padding: 0.3em;
-	}
-	body{
-		background-color: #509B87;
-		text-align: center;
-	}
-		
-	</style>
-	<body>
-	<header>
-	<h1> SISTEMA DE GESTIÓN DE USUARIOS</h1>
-	</header>
-
-	<br>
-	<br>
-
-	<section>
-	<div class="forma1">
-	<form id="reg" action="" method="post">
-	<h2>Registro de usuarios</h2>
-	<br> 
-	<input type="text" name="nombre" placeholder="nombre" required>*<br><br>
-	<input type="text" name="apellido" placeholder="apellido" required>*<br><br>
-	<input type="text" name="edad" placeholder="edad" required>*<br><br>
-	<br>
-	<input type="submit" name="boton" value="guardar">
-	<br> 
-	<br>
-	<?php
-	if(isset($_POST['boton'])){
-		require_once("sentencias.php");
-		$obj=new pelicula(); 
-		$obj->insertar(); 
-		echo "<span> Los datos han sido ingresados</span>";
-		header("Location: index.php");
-	}
-	?>
-	</form>
-	<br>
-	</div>
-	<br>
-
-	<div class="eliminaru">
-	<form id="eliminar" action="" method="post">
-	<h2>Eliminación de usuarios</h2>
-	<br> 
-	<input type="number" name="id" placeholder="id" required>*<br><br>
-	<input type="text" name="nombre" placeholder="nombre" required>*<br><br>
-	<br>
-	<>
-	<input type="submit" name="boton2" value="Eliminar">
-	<>
-	<br>
-	<?php
-	if(isset($_POST['boton2'])){
-		require_once("sentencias.php");
-		$obj=new pelicula(); 
-		$obj->eliminar(); 
-		echo "<span> Los datos han sido eliminados </span>";
-		header("Location: index.php");
-	}
-	?>
-	<br> 
-	</form>
-	<br>
-	</div>
-	<br>
-	<div class="modificaru">
-	<form id="modificar" action="" method="post">
-	<h2>Modificación de usuarios</h2>
-	<br> 
-	<input type="text" name="idm" placeholder="id" required>*<br><br>
-	<input type="text" name="nombrem" placeholder="nuev. nombre" required>*<br><br>
-	<input type="text" name="apellidom" placeholder="nuev. apellido" required>*<br><br>
-	<input type="text" name="edadm" placeholder="nuev. edad" required>*<br><br>
-	<br>
-	<input type="submit" name="boton3" value="guardar">
-	<?php
-	if(isset($_POST['boton3'])){
-		require_once("sentencias.php");
-		$obj=new pelicula(); 
-		$obj->modificar(); 
-		echo "<span> Los datos han sido eliminados </span>";
-		header("Location: index.php");
-	}
-	?>
-	<br>
-	<br> 
-	</form>
-	</div>
-	</section>
-	<br>
-	<div class="base">
-	<table>
-	<h2>ESTADO ACTUAL DE LA TABLA</h2>
-	<th>Id</th>
-	<th>Nombre</th>
-	<th>Apellidos</th>
-	<th>Edad</th>
-	<?php 
-	require_once("sentencias.php");
-	$obj = new pelicula(); 
-	$res = $obj->consultar(); 
-	while($fila=$res->fetch_assoc()){
-		echo "<tr>"; 
-		echo "<td>".$fila["id"]."</td>";
-		echo "<td>".$fila["nombre"]."</td>"; 
-		echo "<td>".$fila["apellido"]."</td>"; 
-		echo "<td>".$fila["edad"]."</td>"; 
-		echo "<tr>"; 
-	}
-	?>
-	</div>
-	</table>
-	</body>
+            <div class="col-lg-6">
+                
+                <div id="form-container">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido:</label>
+                            <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido" required>
+                        </div>
+                        <button type="submit" name="boton" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+	    <?php 
+        if(isset($_POST["botonM"])){
+                require_once "sen.php";
+                $obj = new usua();
+                $obj->modificar();
+            }
+        if(isset($_GET["idM"])){
+                require_once "sen.php";
+                $obj = new usua();
+                $fila = $obj->buscar();
+                ?>
+                <form action="" method="post">
+                    <h1>Modificar</h1><hr>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $fila['nombre']; ?>">
+                    </div>
+                    <div class="form-group">
+    				    <label for="nombre">Apellido:</label>
+                        <input type="text" class="form-control" name="apellido" id="apellido" value="<?php echo $fila['apellido']; ?>">
+                    </div>
+			    	<button type="submit" name="botonM" class="btn btn-primary">Guardar</button>
+                <?php
+            }
+     ?>
+      </div>
+    <div class="col-lg-6">
+        <h1>Usuarios</h1>
+                <div class="seg">   
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th></th>
+                            <?php 
+                                require_once "sen.php";
+                                $obj = new usua();
+                                $res = $obj->consultar();
+                                define("CERRAR_TD", "</td>");
+                                while($fila = $res->fetch_assoc()){
+                                    $id = $fila["id"];
+                                    echo "<tr>";
+                                    echo "<td>".$fila["id"].CERRAR_TD;
+                                    echo "<td>".$fila["nombre"].CERRAR_TD;
+                                    echo "<td>".$fila["apellido"].CERRAR_TD;
+                                    echo "<td><a href='index.php?idE=$id'><i class='fa-solid fa-trash' style='color: red;' 'align:center'></i></a>".CERRAR_TD;
+                                    echo "</tr>";
+                                }
+                             ?>
+                    </tr>
+                </thead>
+            <tbody>
+        </tbody>
+    </table>        
+    </div>
+    </center>
+</body>
 </html>
-
