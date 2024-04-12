@@ -2,7 +2,7 @@
     class Conexion{
     	public $url = "192.168.1.10";
     	public $usuario = "user";
-    	public $password = "david";
+    	public $co_base = "david";
     	public $base = "seguridad";
     	public $conexion = null; 
     	public $sentencia ="";
@@ -12,7 +12,7 @@
     	}
 
 		protected function abrirConexion(){
-			$this->conexion = new mysqli($this->url, $this->usuario, $this->password, $this->base);
+			$this->conexion = new mysqli($this->url, $this->usuario, $this->co_base, $this->base);
 		}
 
     	public function __destruct() {
