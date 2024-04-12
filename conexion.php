@@ -4,7 +4,7 @@
     	public $usuario = "user";
     	public $co_base = "david";
     	public $base = "seguridad";
-    	public $conexion = null; 
+    	public $conexion = null;
     	public $sentencia ="";
 
     	public function __construct() {

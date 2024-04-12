@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <!-- hola -->
             <header>
                 <div class="d-flex justify-content-between align-items-center">
                     <h1>Formulario</h1>
